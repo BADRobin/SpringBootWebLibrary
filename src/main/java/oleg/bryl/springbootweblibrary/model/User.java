@@ -25,7 +25,7 @@ public class User implements UserDetails {
     private String username;
 
     @NotBlank
-    //@Size(min=2, max = 10, message = "length should be beetwen 2 to 10 letters")
+    @Size(min=2, max = 10, message = "length should be beetwen 2 to 10 letters")
     private String password;
 
     @NotEmpty(message = "e-mail can't be empty")
