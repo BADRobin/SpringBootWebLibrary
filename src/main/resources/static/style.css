@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background-image: url("library.png");
+    background-size: cover;
+    background-position: center;
+}
+
+span {
+    color: white;
+    font-size: large;
+}
+
+p {
+    color: white;
+    font-size: large;
+    margin-top: 20px;
+}
+
+.form-group{
+    width: 50vh;
+}
+
+.currentUser{
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 7px;
+}
+

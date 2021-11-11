@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>USER PANEL</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <p class="currentUser">Current user: <span th:text="${currentUser}"></span></p>
+    <form th:action="@{/userpanel}"method="get">
+        <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit">Back to my books</button>
+    </form>
+
+    <form action="/logout" method="get">
+        <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit">Logout</button>
+    </form>
+</nav>
+
+<div align="center">
+
+    <br><h2 style="color: white">All books</h2><br>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">ISBN</th>
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book: ${actualBooks}">
+            <td th:text="${book.id}" />
+            <td th:text="${book.title}" />
+            <td th:text="${book.author}" />
+            <td th:text="${book.ISBN}" />
+
+            <td>
+                <p class="btn btn-outline-success" th:if="${book.available} ">available</p>
+                <p class="btn btn-outline-danger" th:unless="${book.available}">borrowed</p>
+            </td>
+            <td>
+                <p th:if="${book.available} ">
+                    <a class="btn btn-warning" th:href="@{'/userpanel/borrow/'+${book.id}}">Borrow</a>
+                </p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
