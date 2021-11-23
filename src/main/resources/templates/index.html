@@ -1,21 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>WELCOME</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="style.css">
-    <body>
-        <nav class="navbar navbar-dark bg-dark">
-            <form action="/login" method="get">
-                <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit" style="align-items: center">Login
-                </button>
-            </form>
-            <p class="currentUser"> WELCOME </p>
-            <form action="/register" method="get">
-                <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit">Register</button>
-            </form>
-        </nav>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<!--<head th:fragment="head">-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>WELCOME</title>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
+<!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" type="text/css" href="style.css">-->
+<!--    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>-->
+
+<!--    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}"/>-->
+<!--</head>-->
+<body>
+<header th:replace="layout :: header"></header>
+
+<!--    <nav class="navbar navbar-dark bg-dark">-->
+<!--        <form action="/login" method="get">-->
+<!--            <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit" style="align-items: center">Login-->
+<!--            </button>-->
+<!--        </form>-->
+<!--        <p class="currentUser" th:text="#{text.welcome}"> WELCOME </p>-->
+<!--        <form action="/register" method="get">-->
+<!--            <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit">Register</button>-->
+<!--        </form>-->
+<!--        <ul class="navbar-nav navbar-right mx-4">-->
+
+<!--            <li class="nav-item dropdown show mx-2"><a-->
+<!--                    class="btn btn-outline-primary dropdown-toggle" href="#"-->
+<!--                    role="button" id="dropdownLanguage" data-toggle="dropdown"-->
+<!--                    aria-haspopup="true" aria-expanded="false"><span-->
+<!--                    th:text="#{text.locale.language}"></span></a>-->
+
+<!--                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">-->
+<!--                    <a class="dropdown-item" th:href="@{/locale(lang=en_EN)}"-->
+<!--                       th:text="#{text.locale.en}">EN</a>-->
+<!--                    <a class="dropdown-item" th:href="@{/locale(lang=ru_RU)}"-->
+<!--                       th:text="#{text.locale.ru}">RU</a>-->
+
+<!--                </div>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </nav>-->
+<!--    <footer th:fragment="footer" class="container">-->
+<!--        <hr/>-->
+<!--        &lt;!&ndash; Optional JavaScript &ndash;&gt;-->
+<!--        &lt;!&ndash; jQuery first, then Bootstrap JS &ndash;&gt;-->
+<!--        <script th:src="@{/js/jquery-3.2.1.min.js}"></script>-->
+<!--        <script th:src="@{/js/popper.min.js}"></script>-->
+<!--        <script th:src="@{/js/bootstrap.min.js}"></script>-->
+<!--        <script th:src="@{/js/jquery-ui.min.js}"></script>-->
+<!--    </footer>-->
+<footer th:replace="layout :: footer"></footer>
+</body>
 </html>
