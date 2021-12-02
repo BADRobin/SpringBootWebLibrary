@@ -1,4 +1,4 @@
-package oleg.bryl.springbootweblibrary.security;
+package oleg.bryl.springbootweblibrary.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
