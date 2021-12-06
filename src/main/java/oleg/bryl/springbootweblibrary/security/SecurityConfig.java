@@ -12,16 +12,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private UserDetailsServiceImp userDetailsServiceImp;
 
+    /**
+     *
+     * @param userDetailsServiceImp
+     */
     @Autowired
     public SecurityConfig(UserDetailsServiceImp userDetailsServiceImp) {
         this.userDetailsServiceImp = userDetailsServiceImp;
     }
 
+    /**
+     *
+     * @param auth
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsServiceImp);
     }
 
+    /**
+     *
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -42,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .logoutSuccessUrl("/");
                 http.csrf().disable();
                 http.headers().frameOptions().disable();
+
     }
 
 

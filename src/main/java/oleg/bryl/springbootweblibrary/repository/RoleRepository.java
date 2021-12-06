@@ -6,6 +6,10 @@ import oleg.bryl.springbootweblibrary.model.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role,Long> {
-
+    /**
+     *
+     * @param rolename
+     * @return
+     */
     Role findByRolename(String rolename);
 }

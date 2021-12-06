@@ -28,6 +28,11 @@ public class AdminController {
         this.libraryService = libraryService;
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/adminpanel")
     public String getAdminPanel(Model model){
         String currentUser = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -56,6 +61,12 @@ public class AdminController {
         return "redirect:/adminpanel";
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws NotFoundException
+     */
     @GetMapping("/adminpanel/editBook/{id}")
     public ModelAndView editBook(@PathVariable(name="id") Long id) throws NotFoundException {
         ModelAndView mav = new ModelAndView("editBook");
@@ -73,6 +84,11 @@ public class AdminController {
         return "redirect:/adminpanel";
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @GetMapping("/adminpanel/deleteBook/{id}")
     public String deleteBook(@PathVariable (name="id") Long id) {
         libraryService.deleteBook(id);

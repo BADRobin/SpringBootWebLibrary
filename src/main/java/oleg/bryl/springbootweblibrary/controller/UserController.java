@@ -17,11 +17,21 @@ public class UserController {
 
     private LibraryService libraryService;
 
+    /**
+     *
+     * @param libraryService
+     */
     @Autowired
     public UserController(LibraryService libraryService) {
         this.libraryService = libraryService;
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     * @throws NotFoundException
+     */
 
     @GetMapping("userpanel")
     public String getUserPanel(Model model) throws NotFoundException {
@@ -34,6 +44,12 @@ public class UserController {
         return "userpanel";
     }
 
+    /**
+     *
+     * @param bookid
+     * @return
+     * @throws NotFoundException
+     */
     @GetMapping("/userpanel/borrow/{bookid}")
     public String borrow (@PathVariable(name="bookid") Long bookid) throws NotFoundException {
         String currentUser = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -42,12 +58,22 @@ public class UserController {
         return "redirect:/userpanel";
     }
 
+    /**
+     *
+     * @param bookid
+     * @return
+     */
     @GetMapping("/userpanel/return/{bookid}")
     public String returnBook ( @PathVariable (name="bookid") Long bookid) {
         libraryService.returnBook(bookid);
         return "redirect:/userpanel";
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/userpanel/showBooksInLibrary")
     public String showAvailableBooks (Model model){
         String currentUser = SecurityContextHolder.getContext().getAuthentication().getName();

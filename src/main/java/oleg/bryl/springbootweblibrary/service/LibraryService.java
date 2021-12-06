@@ -20,6 +20,13 @@ public class LibraryService {
     private BookRepository bookRepository;
     private PasswordEncoder passwordEncoder;
 
+    /**
+     *
+     * @param userRepository
+     * @param roleRepository
+     * @param bookRepository
+     * @param passwordEncoder
+     */
     @Autowired
     public LibraryService(UserRepository userRepository, RoleRepository roleRepository, BookRepository bookRepository,
                           PasswordEncoder passwordEncoder) {
@@ -29,6 +36,11 @@ public class LibraryService {
         this.bookRepository = bookRepository;
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public User saveUser(User user) {
         user.getRoleList().add(roleRepository.findByRolename("USER"));
         String passBCrypt = passwordEncoder.encode(user.getPassword());
@@ -36,6 +48,11 @@ public class LibraryService {
         return userRepository.save(user);
     }
 
+    /**
+     *
+     * @param id
+     * @throws NotFoundException
+     */
     public void deleteUser(Long id) throws NotFoundException {
         List<Book> bookList = userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found id: " + id)).getBookList();
         for (Book book : bookList) {

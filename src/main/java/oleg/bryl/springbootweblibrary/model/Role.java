@@ -15,6 +15,10 @@ public class Role {
     @ManyToMany(mappedBy = "roleList", fetch = FetchType.EAGER)
     private List<User> userList = new ArrayList<>();
 
+    /**
+     *
+     * @param rolename
+     */
     public Role(String rolename) {
         this.rolename = rolename;
     }

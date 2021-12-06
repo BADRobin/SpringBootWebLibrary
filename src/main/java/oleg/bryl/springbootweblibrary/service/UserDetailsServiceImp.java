@@ -13,11 +13,21 @@ public class UserDetailsServiceImp implements UserDetailsService {
 
     private UserRepository userRepository;
 
+    /**
+     *
+     * @param userRepository
+     */
     @Autowired
     public UserDetailsServiceImp(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    /**
+     * 
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User: " + username + " not found"));

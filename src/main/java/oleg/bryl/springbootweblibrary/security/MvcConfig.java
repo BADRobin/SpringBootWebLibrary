@@ -30,8 +30,14 @@ public class MvcConfig implements WebMvcConfigurer {
         localeInterceptor.setParamName("lang");
         return localeInterceptor;
     }
+
+    /**
+     *
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
+
 }

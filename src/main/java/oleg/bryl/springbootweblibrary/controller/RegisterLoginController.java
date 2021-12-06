@@ -21,18 +21,33 @@ import javax.validation.Valid;
 @Controller
 public class RegisterLoginController {
 
+
     private LibraryService libraryService;
 
+    /**
+     *
+     * @param libraryService
+     */
     @Autowired
     public RegisterLoginController(LibraryService libraryService) {
         this.libraryService = libraryService;
     }
 
+    /**
+     *
+     * @return
+     */
     @GetMapping("/login")
     public String getLogin() {
         return "login";
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     * @throws NotFoundException
+     */
     @GetMapping("/welcome")
     public String getWelcome(Model model) throws NotFoundException {
         if(SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))){
@@ -41,6 +56,11 @@ public class RegisterLoginController {
         return "redirect:/userpanel";
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/register")
     public String registerUSer(Model model) {
         User user = new User();
@@ -48,6 +68,13 @@ public class RegisterLoginController {
         return "register";
     }
 
+    /**
+     *
+     * @param user
+     * @param errors
+     * @param model
+     * @return
+     */
     @PostMapping("/register")
     public String registerUser(@Valid @ModelAttribute("user") User user, Errors errors, Model model) {
 
@@ -64,4 +91,5 @@ public class RegisterLoginController {
             return "login";
         }
     }
+
 }

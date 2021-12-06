@@ -20,6 +20,12 @@ public class Book {
     @ManyToOne
     private User user;
 
+    /**
+     *
+     * @param title
+     * @param author
+     * @param ISBN
+     */
     public Book(String title, String author, String ISBN) {
         this.title = title;
         this.author = author;
