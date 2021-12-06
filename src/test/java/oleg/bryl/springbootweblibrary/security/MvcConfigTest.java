@@ -1,56 +1,36 @@
 package oleg.bryl.springbootweblibrary.security;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 class MvcConfigTest {
-
-    private MvcConfig mvcConfigUnderTest;
-
-    @BeforeEach
-    void setUp() {
-        mvcConfigUnderTest = new MvcConfig();
-    }
+    MvcConfig mvcConfig = new MvcConfig();
 
     @Test
     void testPasswordEncoder() {
-        // Setup
-        // Run the test
-        final BCryptPasswordEncoder result = mvcConfigUnderTest.passwordEncoder();
-
-        // Verify the results
+        BCryptPasswordEncoder result = mvcConfig.passwordEncoder();
+        Assertions.assertEquals(null, result);
     }
 
     @Test
     void testLocaleResolver() {
-        // Setup
-        // Run the test
-        final LocaleResolver result = mvcConfigUnderTest.localeResolver();
-
-        // Verify the results
+        LocaleResolver result = mvcConfig.localeResolver();
+        Assertions.assertEquals(null, result);
     }
 
     @Test
     void testLocaleChangeInterceptor() {
-        // Setup
-        // Run the test
-        final LocaleChangeInterceptor result = mvcConfigUnderTest.localeChangeInterceptor();
-
-        // Verify the results
+        LocaleChangeInterceptor result = mvcConfig.localeChangeInterceptor();
+        Assertions.assertEquals(null, result);
     }
 
     @Test
     void testAddInterceptors() {
-        // Setup
-        final InterceptorRegistry registry = new InterceptorRegistry();
-
-        // Run the test
-        mvcConfigUnderTest.addInterceptors(registry);
-
-        // Verify the results
+        mvcConfig.addInterceptors(null);
     }
 }
+
+//Generated with love by TestMe :) Please report issues and submit feature requests at: http://weirddev.com/forum#!/testme

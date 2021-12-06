@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>ADMIM PANEL</title>
+    <!--	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
+    <!--		  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+    <link rel="stylesheet" type="text/css" href="style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" ref="/css/jquery-ui.min.css" th:href="@{/css/jquery-ui.min.css}"/>
+    <!--	<link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">-->
+</head>
+<body>
+<header th:fragment="header">
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark"; position="fixed">
+        <ul class="navbar-nav mr-auto">
+        <p class="currentUser">Current user: <span th:text="${currentUser}"></span></p>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+        <form action="#" th:action="@{/adminpanel/addNewBook}" method="get" >
+            <button class="btn btn-success btn-lg my-2 my-sm-0" type="submit">Add new book</button>
+        </form>
+        </ul>
+        <ul class="navbar-nav navbar-right">
+        <form action="/logout" method="get">
+            <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit">Logout</button>
+        </form>
+        </ul>
+        <ul class="navbar-nav navbar-right mx-4">
+
+            <li class="nav-item dropdown show mx-2"><a
+                    class="btn btn-outline-primary dropdown-toggle" href="#"
+                    role="button" id="dropdownLanguage" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"><span
+                    th:text="#{text.locale.language}"></span></a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" th:href="@{/locale(lang=en_EN)}"
+                       th:text="#{text.locale.en}">EN</a>
+                    <a class="dropdown-item" th:href="@{/locale(lang=ru_RU)}"
+                       th:text="#{text.locale.ru}">RU</a>
+
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+<footer th:fragment="footer" class="container">
+    <hr/>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Bootstrap JS -->
+    <script src="/js/jquery-3.2.1.min.js" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script src="/js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
+    <script src="/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="/js/jquery-ui.min.js" th:src="@{/js/jquery-ui.min.js}"></script>
+</footer>
+</body>
+</html>

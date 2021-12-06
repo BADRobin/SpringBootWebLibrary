@@ -4,18 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
+<!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-
+<!--    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>-->
+<!--    <link rel="stylesheet" type="text/css" href="style.css">-->
+    <link rel="stylesheet" type="text/css" href="style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" ref="/css/jquery-ui.min.css" th:href="@{/css/jquery-ui.min.css}"/>
 </head>
 <body>
-    <div align="center">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark"; position="fixed">
+    <ul class="navbar-nav mr-auto">
         <h1 style="color: white">REGISTER PAGE</h1>
+    </ul>
+    <ul class="navbar-nav navbar-right mx-4">
+
+        <li class="nav-item dropdown show mx-2"><a
+                class="btn btn-outline-primary dropdown-toggle" href="#"
+                role="button" id="dropdownLanguage" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false"><span
+                th:text="#{text.locale.language}"></span></a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" th:href="@{/locale(lang=en_EN)}"
+                   th:text="#{text.locale.en}">EN</a>
+                <a class="dropdown-item" th:href="@{/locale(lang=ru_RU)}"
+                   th:text="#{text.locale.ru}">RU</a>
+
+            </div>
+        </li>
+    </ul>
+</nav>
+    <div align="center">
+
         <div class="alert alert-info" th:if="${exist}">
             User with this username alrady exist
         </div>
@@ -58,5 +82,14 @@
     </div>
 
 
+    <footer>
+        <hr/>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Bootstrap JS -->
+        <script src="/js/jquery-3.2.1.min.js" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+        <script src="/js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
+        <script src="/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+        <script src="/js/jquery-ui.min.js" th:src="@{/js/jquery-ui.min.js}"></script>
+    </footer>
 </body>
 </html>

@@ -1,24 +1,29 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>USER PANEL</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
+<head th:replace="adminlayout :: head">
+<!--    <meta charset="UTF-8">-->
+<!--    <title>ADMIN PANEL</title>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
+<!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" type="text/css" href="style.css">-->
+    <link rel="stylesheet" type="text/css" href="style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" ref="/css/jquery-ui.min.css" th:href="@{/css/jquery-ui.min.css}"/>
+
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <p class="currentUser">Current user: <span th:text="${currentUser}"></span></p>
+<header th:replace="adminlayout :: header"></header>
+<!--    <nav class="navbar navbar-dark bg-dark">-->
+<!--        <p class="currentUser">Current user: <span th:text="${currentUser}"></span></p>-->
 
-        <form action="#" th:action="@{/adminpanel/addNewBook}" method="get" >
-            <button class="btn btn-success btn-lg my-2 my-sm-0" type="submit">Add new book</button>
-        </form>
-        <form action="/logout" method="get">
-            <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit">Logout</button>
-        </form>
-    </nav>
+<!--        <form action="#" th:action="@{/adminpanel/addNewBook}" method="get" >-->
+<!--            <button class="btn btn-success btn-lg my-2 my-sm-0" type="submit">Add new book</button>-->
+<!--        </form>-->
+<!--        <form action="/logout" method="get">-->
+<!--            <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit">Logout</button>-->
+<!--        </form>-->
+<!--    </nav>-->
 
     <div align="center">
 
@@ -45,7 +50,7 @@
             </tr>
             </tbody>
         </table>
-
+<!--        <nav th:replace="paginator-nav :: paginator"></nav>-->
 
         <br>
         <div class="alert alert-info" >All books:</div>
@@ -79,6 +84,8 @@
                 </tr>
             </tbody>
         </table>
+<!--        <nav th:replace="paginator-nav :: paginator"></nav>-->
     </div>
+<footer th:replace="adminlayout :: footer"></footer>
 </body>
 </html>

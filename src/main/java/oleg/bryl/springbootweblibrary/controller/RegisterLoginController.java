@@ -44,12 +44,11 @@ public class RegisterLoginController {
 
     /**
      *
-     * @param model
      * @return
      * @throws NotFoundException
      */
     @GetMapping("/welcome")
-    public String getWelcome(Model model) throws NotFoundException {
+    public String getWelcome() throws NotFoundException {
         if(SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))){
             return "redirect:/adminpanel";
         }

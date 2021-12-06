@@ -2,6 +2,7 @@ package oleg.bryl.springbootweblibrary.paginator;
 
 import org.springframework.data.domain.Page;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PageRender<T> {
@@ -17,12 +18,11 @@ public class PageRender<T> {
      *
      * @param url
      * @param page
-     * @param pageItems
      */
-    public PageRender(String url, Page<T> page, List<PageItem> pageItems) {
+    public PageRender(String url, Page<T> page) {
         this.url = url;
         this.page = page;
-        this.pageItems = pageItems;
+        this.pageItems = new ArrayList<PageItem>();
         numberOfItemsPerPage = page.getSize();
         totalPages = page.getTotalPages();
         actualPage = page.getNumber() + 1;
@@ -48,6 +48,9 @@ public class PageRender<T> {
         for (int i = 0; i < until; i++) {
             pageItems.add(new PageItem(sinth + i, actualPage == sinth + i));
         }
+    }
+
+    public PageRender(String url, List<T> allBooks) {
     }
 
     public String getUrl() {
