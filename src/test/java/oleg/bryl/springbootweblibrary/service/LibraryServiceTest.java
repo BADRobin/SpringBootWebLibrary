@@ -1,5 +1,6 @@
 package oleg.bryl.springbootweblibrary.service;
 
+import javassist.NotFoundException;
 import oleg.bryl.springbootweblibrary.model.Book;
 import oleg.bryl.springbootweblibrary.model.Role;
 import oleg.bryl.springbootweblibrary.model.User;
@@ -46,7 +47,11 @@ class LibraryServiceTest {
 
     @Test
     void testDeleteUser() {
-        libraryService.deleteUser(Long.valueOf(1));
+        try {
+            libraryService.deleteUser(Long.valueOf(1));
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -73,7 +78,12 @@ class LibraryServiceTest {
     void testFindBookByUser() {
         when(userRepository.findByUsername(anyString())).thenReturn(null);
 
-        List<Book> result = libraryService.findBookByUser("username");
+        List<Book> result = null;
+        try {
+            result = libraryService.findBookByUser("username");
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
         Assertions.assertEquals(Arrays.<Book>asList(new Book("title", "author", "ISBN")), result);
     }
 
@@ -96,7 +106,12 @@ class LibraryServiceTest {
 
     @Test
     void testGetBookById() {
-        Book result = libraryService.getBookById(Long.valueOf(1));
+        Book result = null;
+        try {
+            result = libraryService.getBookById(Long.valueOf(1));
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
         Assertions.assertEquals(new Book("title", "author", "ISBN"), result);
     }
 
@@ -109,7 +124,11 @@ class LibraryServiceTest {
     void testBorrowBook() {
         when(userRepository.findByUsername(anyString())).thenReturn(null);
 
-        libraryService.borrowBook("username", Long.valueOf(1));
+        try {
+            libraryService.borrowBook("username", Long.valueOf(1));
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
 

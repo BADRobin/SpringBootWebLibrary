@@ -1,15 +1,14 @@
 package oleg.bryl.springbootweblibrary.controller;
 
 import javassist.NotFoundException;
+import oleg.bryl.springbootweblibrary.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import oleg.bryl.springbootweblibrary.model.Book;
 import oleg.bryl.springbootweblibrary.model.User;
@@ -23,6 +22,7 @@ public class AdminController {
 
     private LibraryService libraryService;
 
+
     @Autowired
     public AdminController(LibraryService libraryService) {
         this.libraryService = libraryService;
@@ -33,6 +33,7 @@ public class AdminController {
      * @param model
      * @return
      */
+
     @GetMapping("/adminpanel")
     public String getAdminPanel(Model model){
         String currentUser = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -100,4 +101,5 @@ public class AdminController {
         libraryService.deleteUser(id);
         return "redirect:/adminpanel";
     }
+
 }

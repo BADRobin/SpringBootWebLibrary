@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-class PageRenderTest {
+class PageRenderTest<T> {
     @Mock
     Page<T> page;
     @Mock

@@ -2,11 +2,7 @@
 <html
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="userlayout :: head">
-<!--    <meta charset="UTF-8">-->
-<!--    <title>USER PANEL</title>-->
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
-<!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
-<!--    <link rel="stylesheet" type="text/css" href="style.css">-->
+
 </head>
 <body>
 <header th:replace="userlayout :: header"></header>
@@ -15,14 +11,14 @@
 
     <br>
     <br>
-    <div class="alert alert-info" >Your books:</div>
+    <div class="alert alert-info" th:text="#{your.books}">Your books:</div>
     <table class="table table-dark">
         <thead>
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Title</th>
-            <th scope="col">Author</th>
-            <th scope="col">ISBN</th>
+            <th scope="col" th:text="#{id}">ID</th>
+            <th scope="col" th:text="#{title}">Title</th>
+            <th scope="col" th:text="#{author}">Author</th>
+            <th scope="col" th:text="#{isbn}">ISBN</th>
         </tr>
         </thead>
         <tbody>
@@ -32,12 +28,34 @@
             <td th:text="${book.author}" />
             <td th:text="${book.ISBN}" />
             <td>
-                <a class="btn btn-info" th:href="@{'/userpanel/return/'+${book.id}}">Return book</a>
+                <a class="btn btn-info" th:href="@{'/userpanel/return/'+${book.id}}" th:text="#{return.book}">Return book</a>
             </td>
         </tr>
         </tbody>
     </table>
 <!--    <nav th:replace="userlayout :: paginator"></nav>-->
+    <div th:if = "${totalPages > 1}">
+        <div class = "row col-sm-10">
+            <div class = "col-sm-2">
+                Total Rows: [[${totalItems}]]
+            </div>
+            <div class = "col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+            </div>
+            <div class = "col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+                <span th:unless="${currentPage < totalPages}">Next</span>
+            </div>
+
+            <div class="col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+                <span th:unless="${currentPage < totalPages}">Last</span>
+            </div>
+        </div>
+    </div>
 </div>
 <footer th:replace="userlayout :: footer"></footer>
 </body>

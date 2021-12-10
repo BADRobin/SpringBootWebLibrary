@@ -2,6 +2,10 @@ package oleg.bryl.springbootweblibrary.service;
 
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import oleg.bryl.springbootweblibrary.model.Book;
@@ -19,6 +23,9 @@ public class LibraryService {
     private RoleRepository roleRepository;
     private BookRepository bookRepository;
     private PasswordEncoder passwordEncoder;
+
+
+
 
     /**
      *
@@ -53,6 +60,7 @@ public class LibraryService {
      * @param id
      * @throws NotFoundException
      */
+
     public void deleteUser(Long id) throws NotFoundException {
         List<Book> bookList = userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found id: " + id)).getBookList();
         for (Book book : bookList) {
@@ -114,4 +122,5 @@ public class LibraryService {
         book.setUser(userRepository.findByUsername(username).orElseThrow(() -> new NotFoundException("User not found with: " + username)));
         bookRepository.save(book);
     }
+
 }

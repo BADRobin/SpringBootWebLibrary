@@ -2,6 +2,7 @@ package oleg.bryl.springbootweblibrary.controller;
 
 import javassist.NotFoundException;
 import oleg.bryl.springbootweblibrary.paginator.PageRender;
+import oleg.bryl.springbootweblibrary.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.PageRequest;
@@ -14,13 +15,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import oleg.bryl.springbootweblibrary.model.Book;
 import oleg.bryl.springbootweblibrary.service.LibraryService;
 import org.springframework.web.bind.annotation.RequestParam;
-import oleg.bryl.springbootweblibrary.paginator.PageRender;
+
 import java.util.List;
 
 @Controller
 public class UserController {
 
     private LibraryService libraryService;
+
 
     /**
      *
@@ -42,11 +44,7 @@ public class UserController {
     public String getUserPanel(@RequestParam(name = "page", defaultValue = "0") int page, Model model) throws NotFoundException {
         String currentUser = SecurityContextHolder.getContext().getAuthentication().getName();
         model.addAttribute("currentUser", currentUser);
-//        Pageable pageRequest = PageRequest.of(page, 4);
         List<Book> allBooks = libraryService.findAllBooks();
-//        Page<Book> allBooks = (Page<Book>) libraryService.findAllBooks(pageRequest);
-//        Page<Book>
-//        PageRender<Book> pageRender= new PageRender<Book>("/userpanel", allBooks);
         model.addAttribute("allBooks", allBooks);
         List<Book> bookByUser = libraryService.findBookByUser(SecurityContextHolder.getContext().getAuthentication().getName());
         model.addAttribute("bookByUser", bookByUser);
@@ -91,4 +89,5 @@ public class UserController {
         model.addAttribute("actualBooks", actualBooks);
         return "borrowBook";
     }
+
 }

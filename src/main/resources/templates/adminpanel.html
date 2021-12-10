@@ -2,11 +2,6 @@
 <html
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="adminlayout :: head">
-<!--    <meta charset="UTF-8">-->
-<!--    <title>ADMIN PANEL</title>-->
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
-<!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
-<!--    <link rel="stylesheet" type="text/css" href="style.css">-->
     <link rel="stylesheet" type="text/css" href="style.css" th:href="@{/style.css}">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" ref="/css/jquery-ui.min.css" th:href="@{/css/jquery-ui.min.css}"/>
@@ -14,28 +9,18 @@
 </head>
 <body>
 <header th:replace="adminlayout :: header"></header>
-<!--    <nav class="navbar navbar-dark bg-dark">-->
-<!--        <p class="currentUser">Current user: <span th:text="${currentUser}"></span></p>-->
-
-<!--        <form action="#" th:action="@{/adminpanel/addNewBook}" method="get" >-->
-<!--            <button class="btn btn-success btn-lg my-2 my-sm-0" type="submit">Add new book</button>-->
-<!--        </form>-->
-<!--        <form action="/logout" method="get">-->
-<!--            <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit">Logout</button>-->
-<!--        </form>-->
-<!--    </nav>-->
 
     <div align="center">
 
         <br>
-        <div class="alert alert-info" >All useres:</div>
+        <div class="alert alert-info" th:text="#{all.useres}">All useres:</div>
         <table class="table table-dark" align="center">
             <thead>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Username</th>
-                <th scope="col">Email</th>
-                <th scope="col">Role</th>
+                <th scope="col" th:text="#{id}">ID</th>
+                <th scope="col" th:text="#{user.name}">Username</th>
+                <th scope="col" th:text="#{e.mail}">Email</th>
+                <th scope="col" th:text="#{role}">Role</th>
             </tr>
             </thead>
             <tbody>
@@ -45,23 +30,23 @@
                 <td th:text="${user.email}" />
                 <td th:text="${user.getRoleList()}" />
                 <td>
-                    <a class="btn btn-danger" th:href="@{'/adminpanel/deleteUser/'+${user.id}}">Delete</a>
+                    <a class="btn btn-danger" th:href="@{'/adminpanel/deleteUser/'+${user.id}}" th:text="#{delete}">Delete</a>
                 </td>
             </tr>
             </tbody>
         </table>
-<!--        <nav th:replace="paginator-nav :: paginator"></nav>-->
+
 
         <br>
-        <div class="alert alert-info" >All books:</div>
+        <div class="alert alert-info" th:text="#{all.books}">All books:</div>
         <table class="table table-dark">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Author</th>
-                    <th scope="col">ISBN</th>
-                    <th scope="col">Status</th>
+                    <th scope="col" th:text="#{id}">ID</th>
+                    <th scope="col" th:text="#{title}">Title</th>
+                    <th scope="col" th:text="#{author}">Author</th>
+                    <th scope="col" th:text="#{isbn}">ISBN</th>
+                    <th scope="col" th:text="#{status}">Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,19 +57,19 @@
                     <td th:text="${book.ISBN}" />
 
                     <td>
-                        <span class="btn btn-outline-success" th:if="${book.available}">available</span>
-                        <span class="btn btn-outline-danger" th:unless="${book.available}">borrowed</span>
+                        <span class="btn btn-outline-success" th:if="${book.available}" th:text="#{available}">available</span>
+                        <span class="btn btn-outline-danger" th:unless="${book.available}" th:text="#{borrowed}">borrowed</span>
                     </td>
                     <td>
-                        <a class="btn btn-warning" th:href="@{'/adminpanel/editBook/'+${book.id}}">Edit</a>
+                        <a class="btn btn-warning" th:href="@{'/adminpanel/editBook/'+${book.id}}" th:text="#{edit}">Edit</a>
                     </td>
                     <td>
-                        <a class="btn btn-danger" th:href="@{'/adminpanel/deleteBook/'+${book.id}}">Delete</a>
+                        <a class="btn btn-danger" th:href="@{'/adminpanel/deleteBook/'+${book.id}}" th:text="#{delete}">Delete</a>
                     </td>
                 </tr>
             </tbody>
         </table>
-<!--        <nav th:replace="paginator-nav :: paginator"></nav>-->
+
     </div>
 <footer th:replace="adminlayout :: footer"></footer>
 </body>

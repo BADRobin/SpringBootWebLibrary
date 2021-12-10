@@ -3,10 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>ADMIN PANEL</title>
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
-<!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
-<!--    <link rel="stylesheet" type="text/css" href="style.css">-->
+    <title th:text="#{admin.panel}">ADMIN PANEL</title>
     <link rel="stylesheet" type="text/css" href="style.css" th:href="@{/style.css}">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" ref="/css/jquery-ui.min.css" th:href="@{/css/jquery-ui.min.css}"/>
@@ -16,14 +13,11 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark"; position="fixed">
     <ul class="navbar-nav mr-auto">
 
-    <p class="currentUser">Current user: <span th:text="${currentUser}"></span></p>
+    <p class="currentUser" th:text="#{current.user}">Current user: <span th:text="${currentUser}"></span></p>
     </ul>
-    <!--    <form action="#" th:action="@{/adminpanel/addNewBook}" method="get" >-->
-    <!--        <button class="btn btn-success btn-lg my-2 my-sm-0" type="submit">Add new book</button>-->
-    <!--    </form>-->
     <ul class="navbar-nav navbar-right">
     <form action="/logout" method="get">
-        <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit">Logout</button>
+        <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit" th:text="#{logout}">Logout</button>
     </form>
     </ul>
     <ul class="navbar-nav navbar-right mx-4">
@@ -45,37 +39,37 @@
     </ul>
 </nav>
     <div align="center" >
-        <h1 style="color: white">Edit book</h1>
+        <h1 style="color: white" th:text="#{edit.book}">Edit book</h1>
         <form action="#" th:action="@{/adminpanel/editBook}" th:object="${book}" method="post">
             <div class="form-group">
-                <label for="id">Id:</label>
+                <label for="id" th:text="#{id}">Id:</label>
                 <input type="text" th:field="*{id}" class="form-control" placeholder="Enter id" id="id" readonly="readonly">
                 <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="alert alert-danger"></p>
             </div>
             <div class="form-group">
-                <label for="title">Title:</label>
-                <input type="text" th:field="*{title}" class="form-control" placeholder="Enter title" id="title">
+                <label for="title" th:text="#{title}">Title:</label>
+                <input type="text" th:field="*{title}" class="form-control" th:placeholder="#{enter.title}" id="title">
                 <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="alert alert-danger"></p>
             </div>
             <div class="form-group">
-                <label for="author">Author:</label>
-                <input type="text" th:field="*{author}" class="form-control" placeholder="Enter author" id="author">
+                <label for="author"th:text="#{author}">Author:</label>
+                <input type="text" th:field="*{author}" class="form-control" th:placeholder="#{enter.author}" id="author">
                 <p th:if="${#fields.hasErrors('author')}" th:errors="*{author}" class="alert alert-danger"></p>
             </div>
 
             <div class="form-group">
-            <label for="ISBN">ISBN:</label>
-            <input type="text" th:field="*{ISBN}" class="form-control" placeholder="Enter ISBN" id="ISBN">
+            <label for="ISBN" th:text="#{isbn}">ISBN:</label>
+            <input type="text" th:field="*{ISBN}" class="form-control" th:placeholder="#{enter.ISBN}" id="ISBN">
             <p th:if="${#fields.hasErrors('ISBN')}" th:errors="*{ISBN}" class="alert alert-danger"></p>
         </div>
 
             <div class="form-group">
-                <label for="available">available:</label>
-                <input type="text" th:field="*{available}" class="form-control" placeholder="Enter available" id="available" readonly="readonly">
+                <label for="available" th:text="#{available}">available:</label>
+                <input type="text" th:field="*{available}" class="form-control" th:placeholder="#{enter.available}" id="available" readonly="readonly">
                 <p th:if="${#fields.hasErrors('available')}" th:errors="*{available}" class="alert alert-danger"></p>
             </div>
 
-            <button type="submit" class="btn btn-primary">SAVE CHANGES</button>
+            <button type="submit" class="btn btn-primary" th:text="#{seve.changes}">SAVE CHANGES</button>
         </form>
     </div>
 

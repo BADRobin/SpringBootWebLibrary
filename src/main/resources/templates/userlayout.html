@@ -2,28 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head">
     <meta charset="UTF-8">
-    <title>USER PANEL</title>
-    <!--	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
-    <!--		  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+    <title th:text="#{user.panel}">USER PANEL</title>
     <link rel="stylesheet" type="text/css" href="style.css" th:href="@{/style.css}">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" ref="/css/jquery-ui.min.css" th:href="@{/css/jquery-ui.min.css}"/>
-    <!--	<link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">-->
 </head>
 <body>
 <header th:fragment="header">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark"; position="fixed">
         <ul class="navbar-nav mr-auto">
-        <p class="currentUser">Current user: <span th:text="${currentUser}"></span></p>
+        <p class="currentUser" th:text="#{current.user}">Current user: <span th:text="${currentUser}"></span></p>
         </ul>
         <ul class="navbar-nav mr-auto">
         <form action="#" th:action="@{/userpanel/showBooksInLibrary}" method="get" >
-            <button class="btn btn-success btn-lg my-2 my-sm-0" type="submit">Borrow book</button>
+            <button class="btn btn-success btn-lg my-2 my-sm-0" type="submit" th:text="#{borrow.book}">Borrow book</button>
         </form>
         </ul>
         <ul class="navbar-nav navbar-right">
         <form action="/logout" method="get">
-            <button class="btn btn-outline-light btn-lg my-2 my-sm-0"  type="submit">Logout</button>
+            <button class="btn btn-outline-light btn-lg my-2 my-sm-0"  type="submit" th:text="#{logout}">Logout</button>
         </form>
         <ul class="navbar-nav navbar-right mx-4">
 

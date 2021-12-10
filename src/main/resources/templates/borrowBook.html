@@ -3,10 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>USER PANEL</title>
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
-<!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
-<!--    <link rel="stylesheet" type="text/css" href="style.css">-->
+    <title th:text="#{user.panel}">USER PANEL</title>
     <link rel="stylesheet" type="text/css" href="style.css" th:href="@{/style.css}">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" ref="/css/jquery-ui.min.css" th:href="@{/css/jquery-ui.min.css}"/>
@@ -15,16 +12,16 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark"; position="fixed">
     <ul class="navbar-nav mr-auto">
-    <p class="currentUser">Current user: <span th:text="${currentUser}"></span></p>
+    <p class="currentUser" th:text="#{current.user}">Current user: <span th:text="${currentUser}"></span></p>
     </ul>
     <ul class="navbar-nav mr-auto">
     <form th:action="@{/userpanel}"method="get">
-        <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit">Back to my books</button>
+        <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit" th:text="#{back.to.my.books}">Back to my books</button>
     </form>
     </ul>
     <ul class="navbar-nav navbar-right">
     <form action="/logout" method="get">
-        <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit">Logout</button>
+        <button class="btn btn-outline-light btn-lg my-2 my-sm-0" type="submit" th:text="#{logout}">Logout</button>
     </form>
     </ul>
     <ul class="navbar-nav navbar-right mx-4">
@@ -47,15 +44,15 @@
 
 <div align="center">
 
-    <br><h2 style="color: white">All books</h2><br>
+    <br><h2 style="color: white" th:text="#{all.books}">All books</h2><br>
     <table class="table table-dark">
         <thead>
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Title</th>
-            <th scope="col">Author</th>
-            <th scope="col">ISBN</th>
-            <th scope="col">Status</th>
+            <th scope="col" th:text="#{id}">ID</th>
+            <th scope="col" th:text="#{title}">Title</th>
+            <th scope="col" th:text="#{author}">Author</th>
+            <th scope="col" th:text="#{isbn}">ISBN</th>
+            <th scope="col" th:text="#{status}">Status</th>
         </tr>
         </thead>
         <tbody>
@@ -66,18 +63,41 @@
             <td th:text="${book.ISBN}" />
 
             <td>
-                <p class="btn btn-outline-success" th:if="${book.available} ">available</p>
-                <p class="btn btn-outline-danger" th:unless="${book.available}">borrowed</p>
+                <p class="btn btn-outline-success" th:if="${book.available}"  th:text="#{available}" >available</p>
+                <p class="btn btn-outline-danger" th:unless="${book.available}" th:text="#{borrowed}">borrowed</p>
             </td>
             <td>
                 <p th:if="${book.available} ">
-                    <a class="btn btn-warning" th:href="@{'/userpanel/borrow/'+${book.id}}">Borrow</a>
+                    <a class="btn btn-warning" th:href="@{'/userpanel/borrow/'+${book.id}}" th:text="#{borrow}">Borrow</a>
                 </p>
             </td>
         </tr>
         </tbody>
     </table>
+    <div th:if = "${totalPages > 1}">
+        <div class = "row col-sm-10">
+            <div class = "col-sm-2">
+                Total Rows: [[${totalItems}]]
+            </div>
+            <div class = "col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+            </div>
+            <div class = "col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+                <span th:unless="${currentPage < totalPages}">Next</span>
+            </div>
+
+            <div class="col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+                <span th:unless="${currentPage < totalPages}">Last</span>
+            </div>
+        </div>
+    </div>
 </div>
+
 <footer>
     <hr/>
     <!-- Optional JavaScript -->
