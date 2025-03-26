@@ -40,6 +40,3 @@ Contributions to SpringBootWebLibrary are welcome. If you would like to contribu
 
 This project is licensed under the MIT License.
 
-## Contact
-
-If you have any questions or suggestions, please contact me at your-email@example.com.
